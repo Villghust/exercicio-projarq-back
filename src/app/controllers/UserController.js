@@ -18,7 +18,7 @@ class UserController {
 
         const { name, email, password } = req.body;
 
-        const userExists = await User.find({ email });
+        const userExists = await User.findOne({ email });
 
         if (userExists) {
             return res.status(400).json({ error: 'User already exists' });
@@ -26,13 +26,13 @@ class UserController {
 
         const password_hash = await Cryptography.hash(password);
 
-        const user = await User.create({
+        const { _id } = await User.create({
             name,
             email,
             password_hash,
         });
 
-        return res.json(user);
+        return res.json({ _id, name, email });
     }
 }
 

@@ -23,14 +23,14 @@ class SessionController {
 
         const { email, password } = req.body;
 
-        const user = await User.find({ email });
+        const user = await User.findOne({ email });
 
         if (!user) {
             return res.status(401).json({ error: 'User not found' });
         }
 
         const isPasswordValid = await Cryptography.compare(
-            Cryptography.hash(password),
+            password,
             user.password_hash
         );
 
