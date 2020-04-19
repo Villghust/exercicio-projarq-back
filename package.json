@@ -4,7 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/Villghust/exercicio-projarq-back.git",
   "author": "Márcio Santos do Carmo <m.s.carmo@outlook.com>",
-  "license": "MIT","scripts": {
+  "license": "MIT",
+  "scripts": {
     "dev": "nodemon src/server.js",
     "dev:debug": "nodemon --inspect src/server.js",
     "lint": "eslint --fix src --ext .js"

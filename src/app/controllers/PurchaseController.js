@@ -40,7 +40,9 @@ class PurchaseController {
     }
 
     async list(req, res) {
-        const purchases = await Purchase.find();
+        const purchases = await Purchase.find()
+            .sort({ createdAt: 'desc' })
+            .limit(20);
 
         return res.status(200).json(
             purchases.map((purchase) => {
