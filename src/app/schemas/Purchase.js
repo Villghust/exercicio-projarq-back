@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 const ProductSchema = new Schema(
     {
-        name: {
+        id: {
             type: String,
             required: true,
         },
@@ -15,9 +15,23 @@ const ProductSchema = new Schema(
             required: true,
         },
     },
+    { _id: false }
+);
+
+const PurchaseSchema = new Schema(
+    {
+        total_price: {
+            type: Number,
+            required: true,
+        },
+        product_list: {
+            type: [ProductSchema],
+            required: true,
+        },
+    },
     {
         timestamps: true,
     }
 );
 
-export default model('Product', ProductSchema);
+export default model('Purchase', PurchaseSchema);

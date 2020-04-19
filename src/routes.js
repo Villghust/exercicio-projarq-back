@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import ProductController from './app/controllers/ProductController';
+import PurchaseController from './app/controllers/PurchaseController';
 import SessionController from './app/controllers/SessionController';
 import UserController from './app/controllers/UserController';
 
@@ -16,5 +17,7 @@ routes.use(authMiddleware);
 routes.post('/products', ProductController.store);
 routes.get('/products', ProductController.list);
 routes.put('/products/:product_id', ProductController.update);
+routes.post('/purchases', PurchaseController.store);
+routes.get('/purchases', PurchaseController.list);
 
 export default routes;
