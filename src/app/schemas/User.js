@@ -1,23 +1,24 @@
 import { Schema, model } from 'mongoose';
 
-const ProductSchema = new Schema(
+const UserSchema = new Schema(
     {
         name: {
             type: String,
             required: true,
         },
-        price: {
-            type: Number,
+        email: {
+            type: String,
             required: true,
+            unique: true,
         },
-        stock_quantity: {
-            type: Number,
+        password_hash: {
+            type: String,
             required: true,
         },
     },
     {
-        timestamps: true,
+        timestamps: false,
     }
 );
 
-export default model('Product', ProductSchema);
+export default model('User', UserSchema);
