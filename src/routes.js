@@ -19,5 +19,6 @@ routes.get('/products', ProductController.list);
 routes.put('/products/:product_id', ProductController.update);
 routes.post('/purchases', PurchaseController.store);
 routes.get('/purchases', PurchaseController.list);
+routes.delete('/sessions/:session_id', SessionController.delete);
 
 export default routes;

@@ -5,6 +5,7 @@ import Cryptography from '../../lib/Cryptography';
 import jwt from 'jsonwebtoken';
 
 import User from '../schemas/User';
+import Session from '../schemas/Session';
 
 import authConfig from '../../config/auth';
 
@@ -40,12 +41,23 @@ class SessionController {
 
         const { _id, name } = user;
 
+        const { _id: session_id } = await Session.create({});
+
         return res.json({
             user: { _id, name, email },
+            session_id,
             token: jwt.sign({ _id }, authConfig.secret, {
                 expiresIn: authConfig.expiresIn,
             }),
         });
+    }
+
+    async delete(req, res) {
+        await Session.findByIdAndUpdate(req.params.session_id, {
+            is_valid: false,
+        });
+
+        res.status(200).send();
     }
 }
 

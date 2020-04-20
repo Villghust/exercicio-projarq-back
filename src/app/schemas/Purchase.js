@@ -28,6 +28,11 @@ const PurchaseSchema = new Schema(
             type: [ProductSchema],
             required: true,
         },
+        session_id: {
+            type: Schema.Types.ObjectId,
+            ref: 'Session',
+            required: true,
+        },
     },
     {
         timestamps: true,

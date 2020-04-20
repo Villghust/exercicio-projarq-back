@@ -6,6 +6,7 @@ class PurchaseController {
     async store(req, res) {
         const schema = Yup.object().shape({
             total_price: Yup.number().required(),
+            session_id: Yup.string().required(),
             product_list: Yup.array(
                 Yup.object().shape({
                     id: Yup.string().required(),
@@ -40,7 +41,9 @@ class PurchaseController {
     }
 
     async list(req, res) {
-        const purchases = await Purchase.find()
+        const { session_id } = req.query;
+
+        const purchases = await Purchase.find({ session_id })
             .sort({ createdAt: 'desc' })
             .limit(20);
 
