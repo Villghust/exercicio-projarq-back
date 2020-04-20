@@ -43,7 +43,7 @@ class SessionController {
 
         const { _id: session_id } = await Session.create({});
 
-        return res.json({
+        return res.status(201).json({
             user: { _id, name, email },
             session_id,
             token: jwt.sign({ _id }, authConfig.secret, {

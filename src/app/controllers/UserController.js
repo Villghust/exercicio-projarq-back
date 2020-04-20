@@ -32,7 +32,7 @@ class UserController {
             password_hash,
         });
 
-        return res.json({ _id, name, email });
+        return res.status(201).json({ _id, name, email });
     }
 }
 
