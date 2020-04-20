@@ -5,7 +5,7 @@ module.exports = {
         return await hash(password, 8);
     },
 
-    compare: async (password, oldPassword) => {
-        return await compare(password, oldPassword);
+    compare: async (password, passwordHash) => {
+        return await compare(password, passwordHash);
     },
 };

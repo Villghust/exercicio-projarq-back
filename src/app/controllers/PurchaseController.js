@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import Purchase from '../schemas/Purchase';
+import Product from '../schemas/Product';
 
 class PurchaseController {
     async store(req, res) {
@@ -33,6 +34,16 @@ class PurchaseController {
             });
         }
 
+        for (const product of req.body.product_list) {
+            const { id, quantity } = product;
+
+            const p = await Product.findById(id);
+
+            await Product.findByIdAndUpdate(id, {
+                stock_quantity: p.stock_quantity - quantity,
+            });
+        }
+
         const { _id, total_price, product_list } = await Purchase.create(
             req.body
         );
@@ -47,13 +58,17 @@ class PurchaseController {
             .sort({ createdAt: 'desc' })
             .limit(20);
 
-        return res.status(200).json(
-            purchases.map((purchase) => {
-                const { _id, total_price, product_list, createdAt } = purchase;
+        let final_price = 0;
 
-                return { _id, total_price, product_list, createdAt };
-            })
-        );
+        const response = purchases.map((purchase) => {
+            const { _id, total_price, product_list } = purchase;
+
+            final_price += total_price;
+
+            return { _id, total_price, product_list };
+        });
+
+        return res.status(200).json({ final_price, purchases: response });
     }
 }
 
