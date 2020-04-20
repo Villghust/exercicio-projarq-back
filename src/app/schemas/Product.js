@@ -14,6 +14,10 @@ const ProductSchema = new Schema(
             type: Number,
             required: true,
         },
+        image_link: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,

@@ -8,17 +8,22 @@ class ProductController {
             name: Yup.string().required(),
             price: Yup.number().required(),
             stock_quantity: Yup.number().required(),
+            image_link: Yup.string().required(),
         });
 
         if (!(await schema.isValid(req.body))) {
             return res.status(400).json({ error: 'Product is invalid' });
         }
 
-        const { _id, name, price, stock_quantity } = await Product.create(
-            req.body
-        );
+        const {
+            _id,
+            name,
+            price,
+            stock_quantity,
+            image_link,
+        } = await Product.create(req.body);
 
-        res.status(201).json({ _id, name, price, stock_quantity });
+        res.status(201).json({ _id, name, price, stock_quantity, image_link });
     }
 
     async list(req, res) {
@@ -26,9 +31,15 @@ class ProductController {
 
         return res.status(200).json(
             products.map((product) => {
-                const { _id, name, price, stock_quantity } = product;
+                const {
+                    _id,
+                    name,
+                    price,
+                    stock_quantity,
+                    image_link,
+                } = product;
 
-                return { _id, name, price, stock_quantity };
+                return { _id, name, price, stock_quantity, image_link };
             })
         );
     }
@@ -38,6 +49,7 @@ class ProductController {
             name: Yup.string(),
             price: Yup.number(),
             stock_quantity: Yup.number(),
+            image_link: Yup.string(),
         });
 
         if (!(await schema.isValid(req.body))) {
