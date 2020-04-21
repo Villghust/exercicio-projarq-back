@@ -8,6 +8,7 @@ class PurchaseController {
         const schema = Yup.object().shape({
             total_price: Yup.number().required(),
             session_id: Yup.string().required(),
+            payment_type: Yup.string().required(),
             product_list: Yup.array(
                 Yup.object().shape({
                     id: Yup.string().required(),
@@ -44,11 +45,16 @@ class PurchaseController {
             });
         }
 
-        const { _id, total_price, product_list } = await Purchase.create(
-            req.body
-        );
+        const {
+            _id,
+            total_price,
+            product_list,
+            payment_type,
+        } = await Purchase.create(req.body);
 
-        return res.status(201).json({ _id, total_price, product_list });
+        return res
+            .status(201)
+            .json({ _id, total_price, product_list, payment_type });
     }
 
     async list(req, res) {
@@ -61,11 +67,11 @@ class PurchaseController {
         let final_price = 0;
 
         const response = purchases.map((purchase) => {
-            const { _id, total_price, product_list } = purchase;
+            const { _id, total_price, product_list, payment_type } = purchase;
 
             final_price += total_price;
 
-            return { _id, total_price, product_list };
+            return { _id, total_price, product_list, payment_type };
         });
 
         return res.status(200).json({ final_price, purchases: response });

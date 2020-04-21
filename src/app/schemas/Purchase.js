@@ -33,6 +33,10 @@ const PurchaseSchema = new Schema(
             ref: 'Session',
             required: true,
         },
+        payment_type: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,
