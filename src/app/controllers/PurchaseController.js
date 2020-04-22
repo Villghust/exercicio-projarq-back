@@ -25,7 +25,7 @@ class PurchaseController {
         let totalPrice = 0;
 
         req.body.product_list.forEach(
-            (product) => (totalPrice += product.price)
+            (product) => (totalPrice += product.price * product.quantity)
         );
 
         if (req.body.total_price !== totalPrice) {
