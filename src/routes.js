@@ -1,13 +1,13 @@
-import { Router } from 'express';
+import express from 'express';
 
-import ProductController from './app/controllers/ProductController';
-import PurchaseController from './app/controllers/PurchaseController';
-import SessionController from './app/controllers/SessionController';
-import UserController from './app/controllers/UserController';
+import ProductController from './app/controllers/ProductController.js';
+import PurchaseController from './app/controllers/PurchaseController.js';
+import SessionController from './app/controllers/SessionController.js';
+import UserController from './app/controllers/UserController.js';
 
-import authMiddleware from './app/middlewares/auth';
+import authMiddleware from './app/middlewares/auth.js';
 
-const routes = new Router();
+const routes = new express.Router();
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);

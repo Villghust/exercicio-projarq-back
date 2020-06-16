@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
-import Purchase from '../schemas/Purchase';
-import Product from '../schemas/Product';
+import Purchase from '../schemas/Purchase.js';
+import Product from '../schemas/Product.js';
 
 class PurchaseController {
     async store(req, res) {

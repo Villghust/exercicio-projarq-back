@@ -1,11 +1,13 @@
-import { hash, compare } from 'bcryptjs';
+import bcryptjs from 'bcryptjs';
 
-module.exports = {
+const bcrypt = {
     hash: async (password) => {
-        return await hash(password, 8);
+        return await bcryptjs.hash(password, 8);
     },
 
     compare: async (password, passwordHash) => {
-        return await compare(password, passwordHash);
+        return await bcryptjs.compare(password, passwordHash);
     },
 };
+
+export default bcrypt;

@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const SessionSchema = new Schema(
+const SessionSchema = new mongoose.Schema(
     {
         is_valid: {
             type: Boolean,
@@ -12,4 +12,4 @@ const SessionSchema = new Schema(
     }
 );
 
-export default model('Session', SessionSchema);
+export default mongoose.model('Session', SessionSchema);

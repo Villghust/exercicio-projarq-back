@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const ProductSchema = new Schema(
+const ProductSchema = new mongoose.Schema(
     {
         id: {
             type: String,
@@ -18,7 +18,7 @@ const ProductSchema = new Schema(
     { _id: false }
 );
 
-const PurchaseSchema = new Schema(
+const PurchaseSchema = new mongoose.Schema(
     {
         total_price: {
             type: Number,
@@ -29,7 +29,7 @@ const PurchaseSchema = new Schema(
             required: true,
         },
         session_id: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Session',
             required: true,
         },
@@ -43,4 +43,4 @@ const PurchaseSchema = new Schema(
     }
 );
 
-export default model('Purchase', PurchaseSchema);
+export default mongoose.model('Purchase', PurchaseSchema);

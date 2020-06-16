@@ -1,13 +1,13 @@
 import * as Yup from 'yup';
 
-import Cryptography from '../../lib/Cryptography';
+import Cryptography from '../../lib/Cryptography.js';
 
 import jwt from 'jsonwebtoken';
 
-import User from '../schemas/User';
-import Session from '../schemas/Session';
+import User from '../schemas/User.js';
+import Session from '../schemas/Session.js';
 
-import authConfig from '../../config/auth';
+import authConfig from '../../config/auth.js';
 
 class SessionController {
     async store(req, res) {
